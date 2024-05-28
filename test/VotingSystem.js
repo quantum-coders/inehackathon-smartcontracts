@@ -17,6 +17,7 @@ describe("VoteSystem", function () {
 
     [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
 
+    console.log("Owner address:", owner.address);
     voteSystem = await VoteSystem.deploy(owner.address);
 
     await voteSystem.waitForDeployment();
@@ -30,6 +31,7 @@ describe("VoteSystem", function () {
 
   describe("Deployment", function () {
     it("Should set the right owner", async function () {
+      console.log("VoteSystem owner:", owner.address);
       expect(await voteSystem.owner()).to.equal(owner.address);
     });
   });
