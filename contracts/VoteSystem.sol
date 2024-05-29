@@ -41,6 +41,8 @@ contract VoteSystem is ERC721, Ownable, ERC721URIStorage {
         require(!votes[keccak256(abi.encodePacked(msg.sender, candidate, electoralVoteEncoded))], "Vote already casted");
         bytes32 voteHash = keccak256(abi.encodePacked(msg.sender, candidate, electoralVoteEncoded));
         votes[voteHash] = true;
+        /// increase candidate vote count:
+        candidates[candidate]++;
         emit VoteCasted(msg.sender, candidates[candidate]);
     }
 
